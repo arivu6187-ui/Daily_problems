@@ -1,4 +1,4 @@
-package BankAccount;
+package day8.BankAccount;
 import java.util.Scanner;
 interface Application{
     void withdraw(double Amount);
