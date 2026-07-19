@@ -128,21 +128,21 @@ public class lambda {
         int amount=100000-000;
         int n=153;
         System.out.println(amount);
-//        int temp=n,count=0,total=0;
-//        while(n>0){
-//            int s=n%10;
-//            total=total+s;
-//            count++;
-//            n=n/10;
-//        }
-//        System.out.println("Sum of the number:"+total);
-//        total=0;
-//        n=temp;
-//        while(n>0) {
-//            int s = n % 10;
-//            total = (int) (total + Math.pow(s, count));
-//            n = n / 10;
-//        }
-//        System.out.println(total==temp);
+        int temp=n,count=0,total=0;
+        while(n>0){
+            int s=n%10;
+            total=total+s;
+            count++;
+            n=n/10;
+        }
+        System.out.println("Sum of the number:"+total);
+        total=0;
+        n=temp;
+        while(n>0) {
+            int s = n % 10;
+            total = (int) (total + Math.pow(s, count));
+            n = n / 10;
+        }
+        System.out.println(total==temp);
         }
     }
