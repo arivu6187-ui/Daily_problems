@@ -1,0 +1,74 @@
+package day26;
+
+import java.util.*;
+
+public class CourseSchedule2 {
+
+    public static void main(String[] args) {
+
+        int numCourses = 4;
+        int[][] prerequisites = {
+                {1, 0},
+                {2, 0},
+                {3, 1},
+                {3, 2}
+        };
+
+        Solution2 obj = new Solution2();
+
+        int[] result = obj.findOrder(numCourses, prerequisites);
+
+        System.out.println(Arrays.toString(result));
+    }
+}
+
+class Solution2 {
+
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        int[] indegree = new int[numCourses];
+
+        for (int[] p : prerequisites) {
+            graph.get(p[1]).add(p[0]);
+            indegree[p[0]]++;
+        }
+
+        Queue<Integer> queue = new LinkedList<>();
+
+        for (int i = 0; i < numCourses; i++) {
+            if (indegree[i] == 0) {
+                queue.offer(i);
+            }
+        }
+
+        int[] order = new int[numCourses];
+        int index = 0;
+
+        while (!queue.isEmpty()) {
+
+            int current = queue.poll();
+            order[index++] = current;
+
+            for (int next : graph.get(current)) {
+
+                indegree[next]--;
+
+                if (indegree[next] == 0) {
+                    queue.offer(next);
+                }
+            }
+        }
+
+        if (index == numCourses) {
+            return order;
+        }
+
+        return new int[0];
+    }
+}
